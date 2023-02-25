@@ -3,7 +3,7 @@ import { Recipe } from './recipes.model';
 import { Ingredient } from '../shared/ingredient.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class RecipeService {
   recipeSelected = new EventEmitter<Recipe>();
 
@@ -26,11 +26,15 @@ export class RecipeService {
     ),
   ];
 
-  constructor(private shoppingListService: ShoppingListService){}
+  constructor(private shoppingListService: ShoppingListService) { }
 
   getRecipes(): Recipe[] {
     // Returning a copy to prevent reference
     return this.recipes.slice();
+  }
+
+  getRecipeById(index: number) {
+    return this.recipes[index];
   }
 
   addIngredientToShoppingList(ingredients: Ingredient[]) {
